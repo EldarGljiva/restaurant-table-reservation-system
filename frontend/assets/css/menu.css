@@ -1,0 +1,25 @@
+.btn-toolbar-custom {
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.btn-success-custom {
+  color: #fff;
+  background-color: #86b486;
+  border-color: #618061;
+}
+
+.btn-success-custom:hover {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #398439;
+}
+
+.btn-success-custom:focus {
+  color: #fff;
+  background-color: #255625;
+  border-color: #1d421d;
+}
