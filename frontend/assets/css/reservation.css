@@ -1,0 +1,7 @@
+.box-area-reservation {
+  width: 900px;
+}
+label.error {
+  display: block;
+  color: red;
+}
