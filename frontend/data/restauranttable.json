@@ -1,0 +1,24 @@
+{
+  "restauranttable": [
+    {
+      "tableNumber": 1,
+      "reserved": 0
+    },
+    {
+      "tableNumber": 2,
+      "reserved": 0
+    },
+    {
+      "tableNumber": 3,
+      "reserved": 1
+    },
+    {
+      "tableNumber": 4,
+      "reserved": 0
+    },
+    {
+      "tableNumber": 5,
+      "reserved": 1
+    }
+  ]
+}

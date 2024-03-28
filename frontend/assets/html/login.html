@@ -1,5 +1,5 @@
 <!--Login page content-->
-<form id="loginForm">
+<form id="loginForm" method="POST">
   <div
     class="container d-flex justify-content-center align-items-center min-vh-100"
   >
@@ -17,6 +17,7 @@
               placeholder="Email address"
               id="email"
               name="email"
+              autocomplete="off"
             />
           </div>
           <div class="input-group mb-3">
@@ -26,11 +27,16 @@
               placeholder="Password"
               id="password"
               name="password"
+              autocomplete="off"
             />
           </div>
 
           <div class="input-group mb-3">
-            <button type="submit" class="btn btn-success w-100 fs-6">
+            <button
+              type="submit"
+              class="btn btn-success w-100 fs-6"
+              id="loginButton"
+            >
               Login
             </button>
           </div>

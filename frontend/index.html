@@ -16,6 +16,11 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+     <!-- toastr css -->
+     <link
+     rel="stylesheet"
+     href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css"
+   />
     <!-- index.css -->
     <link href="assets/css/index.css" rel="stylesheet" />
      <!-- menu.css -->
@@ -149,9 +154,11 @@
           </div>
         </div>
       </div>
-    <script src="assets/js/index.js"></script>
+    
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Jquery Validator-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- spapp js -->
     <script src="assets/js/jquery.spapp.js"></script>
     <script src="assets/js/jquery.spapp.min.js"></script>
@@ -160,5 +167,39 @@
       var app = $.spapp({templateDir:"assets/html/"});
       app.run();
     </script>
+    <!-- block-ui -->
+    <script src="https://cdn.jsdelivr.net/npm/block-ui@2.70.1/jquery.blockUI.min.js">
+      /* 
+      $('body').block({ 
+        message: '<div class="spinner-border text-primary" role="status"></div>', // Need to wrap the HTML in quotes
+        css: {
+          backgroundColor: 'transparent',
+          color: '0'
+        },
+        overlayCSS: { // This should be inside the block function, not separate
+          backgroundColor: '#000',
+          opacity: 0.25
+        }
+      });
+
+       */
+    </script>
+    <!-- toastr js -->
+    <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js"></script>
+    
+    <!-- index.js-->
+    <script src="assets/js/index.js"></script>
+    <!-- home.js -->
+    <script src="assets/js/home.js"></script>
+    <!-- menu.js -->
+    <script src="assets/js/menu.js"></script>
+    <!-- bookings.js -->
+    <script src="assets/js/bookings.js"></script>
+    <!-- login.js -->
+    <script src="assets/js/login.js"></script>
+    <!-- register.js -->
+    <script src="assets/js/register.js"></script>
+    <!-- reservation.js -->
+    <script src="assets/js/reservation.js"></script>
   </body>
 </html>

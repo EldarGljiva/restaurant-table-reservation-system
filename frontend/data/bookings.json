@@ -1,0 +1,12 @@
+{
+  "bookings": [
+    {
+      "id": 1,
+      "customerId": 1,
+      "tableId": 1,
+      "reservationDate": "2021-01-01",
+      "createdAt": "2021-01-01",
+      "updatedAt": "2021-01-01"
+    }
+  ]
+}
