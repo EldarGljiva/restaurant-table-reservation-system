@@ -1,6 +1,6 @@
 // Define the getMenuItems function
 getMenuItems = () => {
-  $.get("data/menuitems.json", (menuitems) => {
+  $.get("data/home_menuitems.json", (menuitems) => {
     let output = "";
     for (let i = 0; i <= 2 && i < menuitems.menuitems.length; i++) {
       let item = menuitems.menuitems[i];

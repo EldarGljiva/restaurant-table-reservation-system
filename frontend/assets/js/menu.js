@@ -34,10 +34,10 @@ getMenuItems = (foodType) => {
 // Calling function to get menu items
 $(document).ready(function () {
   $("#main_courses").click(function () {
-    getMenuItems("Main Courses"); // Corrected function name
+    getMenuItems("Main Courses");
   });
   $("#side_dishes").click(function () {
-    getMenuItems("Side Dishes"); // Corrected function name
+    getMenuItems("Side Dishes");
   });
   $("#desserts").click(function () {
     getMenuItems("Desserts");

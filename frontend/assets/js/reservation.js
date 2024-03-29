@@ -11,6 +11,9 @@ getAllTables();
 
 // Initialize form validation
 $("#reservationForm").validate({
+  errorPlacement: function (error, element) {
+    error.insertAfter(element); // Place error message after the input element
+  },
   rules: {
     email: {
       required: true,

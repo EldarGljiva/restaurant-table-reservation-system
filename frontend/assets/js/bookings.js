@@ -6,14 +6,17 @@ getBookings = () => {
       let item = bookings.bookings[i];
 
       output +=
-        '<div class="col-lg-2 col-md-4 col-xs-6">' +
+        '<div class="booking-box col-lg-3 col-md-4 col-sm-6 col-xs-6 mb-2">' +
         '<div class="card">' +
         '<div class="card-body">' +
-        '<h5 class="card-title">' +
+        '<h5 class="card-title"> Customer ID: ' +
         item.customerId +
         "</h5>" +
-        '<p class="card-text">' +
+        '<p class="card-text"> Table ID: ' +
         item.tableId +
+        "</p>" +
+        '<p class="card-text"> <span style="color: green; font-weight: bold; display:block">Reservation Date</span> ' +
+        item.reservationDate +
         "</p>" +
         "</div>" +
         "</div>" +
