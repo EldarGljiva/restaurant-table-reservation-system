@@ -1,0 +1,44 @@
+{
+  "bookings": [
+    {
+      "id": 1,
+      "customerId": 1,
+      "tableId": 1,
+      "reservationDate": "2021-01-01",
+      "createdAt": "2021-01-01",
+      "updatedAt": "2021-01-01"
+    },
+    {
+      "id": 2,
+      "customerId": 2,
+      "tableId": 2,
+      "reservationDate": "2021-01-01",
+      "createdAt": "2021-01-01",
+      "updatedAt": "2021-01-01"
+    },
+    {
+      "id": 3,
+      "customerId": 3,
+      "tableId": 3,
+      "reservationDate": "2021-01-01",
+      "createdAt": "2021-01-01",
+      "updatedAt": "2021-01-01"
+    },
+    {
+      "id": 4,
+      "customerId": 4,
+      "tableId": 4,
+      "reservationDate": "2021-01-01",
+      "createdAt": "2021-01-01",
+      "updatedAt": "2021-01-01"
+    },
+    {
+      "id": 5,
+      "customerId": 5,
+      "tableId": 5,
+      "reservationDate": "2021-01-01",
+      "createdAt": "2021-01-01",
+      "updatedAt": "2021-01-01"
+    }
+  ]
+}

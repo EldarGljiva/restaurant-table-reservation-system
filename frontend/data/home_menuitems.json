@@ -1,0 +1,28 @@
+{
+  "menuitems": [
+    {
+      "id": 1,
+      "foodName": "cherry cake",
+      "foodPrice": "12",
+      "foodType": "Desserts",
+      "description": "fruity cake",
+      "image_url": "../assets/images/food1.jpg"
+    },
+    {
+      "id": 2,
+      "foodName": "cherry cake",
+      "foodPrice": "12",
+      "foodType": "Desserts",
+      "description": "fruity cake",
+      "image_url": "../assets/images/food1.jpg"
+    },
+    {
+      "id": 3,
+      "foodName": "cherry cake",
+      "foodPrice": "12",
+      "foodType": "Desserts",
+      "description": "fruity cake",
+      "image_url": "../assets/images/food1.jpg"
+    }
+  ]
+}

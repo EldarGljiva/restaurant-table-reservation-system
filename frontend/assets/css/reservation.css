@@ -2,6 +2,7 @@
   width: 900px;
 }
 label.error {
-  display: block;
+  display: block !important;
   color: red;
+  margin-top: 5px !important;
 }

@@ -16,9 +16,23 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+     <!-- toastr css -->
+     <link
+     rel="stylesheet"
+     href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css"
+   />
     <!-- index.css -->
     <link href="assets/css/index.css" rel="stylesheet" />
-
+     <!-- menu.css -->
+     <link href="assets/css/menu.css" rel="stylesheet" />
+     <!-- register.css -->
+    <link href="assets/css/login.css" rel="stylesheet" />
+    <!-- login.css -->
+    <link href="assets/css/register.css" rel="stylesheet" />
+    <!-- reservation.css -->
+    <link href="assets/css/reservation.css" rel="stylesheet" />
+    <!-- bookings.css -->
+    <link href="assets/css/bookings.css" rel="stylesheet" />
     <!-- PlayFair font style -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,11 +50,15 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
+    <!-- spapp.css -->
+    <link rel="stylesheet" href="assets/css/spapp.css"/>
     <title>Chef's Restaurant</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
   </head>
   <body>
     <!-- NavBar -->
-    <nav class="mb-3">
+    <nav class="mb-3" role="navigation">
       <a href="#">
         <div class="logo">
           <img
@@ -56,10 +74,10 @@
       <div class="closeMenu" id="closeMenu"><i class="fa fa-times"></i></div>
 
       <ul class="mainMenu">
-        <li><a href="#">Home</a></li>
-        <li><a href="assets/html/menu.html">Our Menu</a></li>
-        <li><a href="assets/html/reservation.html">Make Reservation</a></li>
-        <li><a href="assets/html/aboutUs.html">About Us</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Our Menu</a></li>
+        <li><a href="#reservation">Make Reservation</a></li>
+        <li><a href="#aboutUs">About Us</a></li>
         <li id="adminLink" style="display: none" class="nav-item dropdown">
           <as
             class="nav-link dropdown-toggle"
@@ -73,12 +91,12 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="adminDropdown">
             <li>
-              <a class="dropdown-item" href="assets/html/adminBooking.html"
+              <a class="dropdown-item" href="#adminBookings"
                 >Manage Bookings</a
               >
             </li>
             <li>
-              <a class="dropdown-item" href="assets/html/adminMenu.html"
+              <a class="dropdown-item" href="#adminMenuItems"
                 >Manage Menu Items</a
               >
             </li>
@@ -97,90 +115,25 @@
             Profile <i class="bi bi-chevron-down"></i>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="assets/html/bookings.html">Bookings</a></li>
+            <li><a class="dropdown-item" href="#bookings">Bookings</a></li>
             <li id="loginLogoutBtn">
-              <a class="dropdown-item" href="assets/html/login.html">Login</a>
+              <a class="dropdown-item" href="#login">Login</a>
             </li>
           </ul>
         </li>
       </ul>
     </nav>
-
-    <!--Welcome Back Image-->
-    <div class="container d-flex justify-content-center" style="position: relative;">
-        <img src="./assets/images/restaurant.jpg" alt="a cook" class="img-fluid" style="max-width: 100%" />
-        <div class="container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-          <h1 class="display-4 text-center mb-5" id="text-over-image">Welcome Back</h1>
-          <div class="text-center">
-            <a class="btn btn-success btn-lg" href="assets/html/reservation.html" role="button">Make Your Reservation</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!--About Us-->
-    <div class="container mt-5 mb-5">
-      <div class="row align-items-start">
-        <div class="col-md-6 ">
-          <h1 class="display-5 text-center">About Us</h1>
-          <p>At Chef's, we're all about crafting unforgettable dining experiences. Our passion for culinary artistry drives us to create dishes that tell a story of craftsmanship and dedication.
-
-            Located in [City], Chef's Restaurant blends innovation with tradition. From our kitchen to your table, we use the freshest ingredients to bring you flavors that tantalize your taste buds.
-            
-            Join us for a romantic dinner, a family celebration, or a casual gathering with friends. Our team is dedicated to providing exceptional service and a warm, inviting atmosphere.
-            
-            Thank you for choosing Chef's Restaurant. Let's create lasting memories together.
-            
-            Bon appétit!</p>
-        </div>
-        <div class="col-md-6 d-flex  justify-content-center align-items-center">
-          <img src="./assets/images/aboutus.jpg" alt="cook" class="mt-4 p-5" height="300px">
-        </div>
-        
-      </div>
-    </div>
-    <!-- Our Menu Section -->
-  <div class="container mb-3 mt-5">
-    <div class="row text-center mt-3 mb-3"><h4>Our Menu</h4></div>
-    <div class="row text-center" id="menuItems">
-      <!-- Menu items will be loaded dynamically here but for now they're hard coded -->
-        <div class="col-lg-4 col-md-4 mb-2">
-            <div class="card">
-                <img src="assets/images/food1.jpg" class="card-img-top img-fluid" alt="food"/>
-                <div class="card-body">
-                    <h5 class="card-title">Food Name</h5>
-                    <p class="card-text">Food description</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-4 mb-2">
-            <div class="card">
-                <img src="assets/images/food1.jpg" class="card-img-top img-fluid" alt="food"/>
-                <div class="card-body">
-                    <h5 class="card-title">Food Name</h5>
-                    <p class="card-text">Food description</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4  col-md-4 mb-2">
-            <div class="card">
-                <img src="assets/images/food1.jpg" class="card-img-top img-fluid" alt="food"/>
-                <div class="card-body">
-                    <h5 class="card-title">Food Name</h5>
-                    <p class="card-text">Food description</p>
-                </div>
-            </div>
-        </div>
-            
-    </div>  
-    <div class="row">
-      <div class="col text-center mb-4">
-        <a class="mt-2 btn btn-dark" href="assets/html/menu.html" role="button">Explore More</a>
-      </div>
-    </div>
-  </div>
-
-
+    <!-- main spapp content -->
+    <main id="spapp" role="main">
+      <section id="home" data-load="home.html"></section>
+      <section id="menu" data-load="menu.html"></section>
+      <section id="reservation" data-load="reservation.html"></section>
+      <section id="aboutUs" data-load="aboutUs.html"></section>
+      <section id="adminBookings" data-load="adminBooking.html"></section>
+      <section id="bookings" data-load="bookings.html"></section>
+      <section id="login" data-load="login.html"></section>
+      <section id="register" data-load="register.html"></section>
+    </main>
     <!-- Footer -->
     <div style="background-color: #ffa500" id="footer">
         <div class="container">
@@ -205,6 +158,52 @@
           </div>
         </div>
       </div>
+    
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Jquery Validator-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- spapp js -->
+    <script src="assets/js/jquery.spapp.js"></script>
+    <script src="assets/js/jquery.spapp.min.js"></script>
+    <!-- spapp -->
+    <script>
+      var app = $.spapp({templateDir:"assets/html/"});
+      app.run();
+    </script>
+    <!-- block-ui -->
+    <script src="https://cdn.jsdelivr.net/npm/block-ui@2.70.1/jquery.blockUI.min.js">
+      /* 
+      $('body').block({ 
+        message: '<div class="spinner-border text-primary" role="status"></div>', // Need to wrap the HTML in quotes
+        css: {
+          backgroundColor: 'transparent',
+          color: '0'
+        },
+        overlayCSS: { // This should be inside the block function, not separate
+          backgroundColor: '#000',
+          opacity: 0.25
+        }3
+      });
+
+       */
+    </script>
+    <!-- toastr js -->
+    <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js"></script>
+    
+    <!-- index.js-->
     <script src="assets/js/index.js"></script>
+    <!-- home.js -->
+    <script src="assets/js/home.js"></script>
+    <!-- menu.js -->
+    <script src="assets/js/menu.js"></script>
+    <!-- bookings.js -->
+    <script src="assets/js/bookings.js"></script>
+    <!-- login.js -->
+    <script src="assets/js/login.js"></script>
+    <!-- register.js -->
+    <script src="assets/js/register.js"></script>
+    <!-- reservation.js -->
+    <script src="assets/js/reservation.js"></script>
   </body>
 </html>
