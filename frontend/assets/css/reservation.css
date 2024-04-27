@@ -6,3 +6,10 @@ label.error {
   color: red;
   margin-top: 5px !important;
 }
+@media (max-width: 600px) {
+  .booking-box {
+    display: block;
+    width: 80%;
+    margin-left: 60px;
+  }
+}

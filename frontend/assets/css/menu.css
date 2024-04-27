@@ -23,3 +23,6 @@
   background-color: #255625;
   border-color: #1d421d;
 }
+.menu-item-hover:hover {
+  background-color: pink;
+}

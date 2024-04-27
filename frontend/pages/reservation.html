@@ -18,7 +18,12 @@
     <!--Right box-->
     <div class="col-md-6 right-box">
       <!-- Reservation Form-->
-      <form class="row align-items-center" id="reservationForm">
+      <form
+        class="row align-items-center"
+        id="reservationForm"
+        action="#"
+        method="POST"
+      >
         <div class="header-text">
           <p style="font-size: 24px; color: #000; font-weight: bold">
             Table Reservation
@@ -59,3 +64,8 @@
     </div>
   </div>
 </div>
+<script>
+  reservationService.getAllTables();
+  reservationService.setMinDate();
+  reservationService.initFormValidation();
+</script>
