@@ -43,9 +43,14 @@ var loginService = {
           data: data,
           success: function (response) {
             $("body").unblock();
-            toastr.success("Logged Successfully");
-            // Clear form
-            $("#loginForm")[0].reset();
+            if (response.token) {
+              localStorage.setItem("token", response.token);
+              toastr.success("Logged in successfully");
+              // Clear form
+              $("#loginForm")[0].reset();
+            } else {
+              toastr.error("Token not received");
+            }
           },
           error: function (xhr, status, error) {
             $("body").unblock();

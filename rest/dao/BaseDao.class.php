@@ -24,7 +24,6 @@ class BaseDao
             $stmt = $this->conn->prepare("SELECT * FROM " . $this->table_name);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
             //print_r($result);
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
