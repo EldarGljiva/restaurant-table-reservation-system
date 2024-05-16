@@ -69,22 +69,3 @@ var MenuItemsService = {
     });
   },
 };
-
-// Calling function to get menu items based on user interaction
-$(document).ready(function () {
-  $("#main_courses").click(function () {
-    MenuItemsService.getMenuItems("Main Courses");
-  });
-  $("#side_dishes").click(function () {
-    MenuItemsService.getMenuItems("Side Dishes");
-  });
-  $("#desserts").click(function () {
-    MenuItemsService.getMenuItems("Desserts");
-  });
-  $("#beverages").click(function () {
-    MenuItemsService.getMenuItems("Beverages");
-  });
-
-  // Call the function to get limited menu items
-  MenuItemsService.getLimitedMenuItems();
-});

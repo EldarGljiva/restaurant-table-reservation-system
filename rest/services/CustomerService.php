@@ -13,7 +13,6 @@ class CustomerService extends BaseService
 
     public function add($entity)
     {
-        //$entity['password'] = md5($entity['password']);
         return parent::add($entity);
     }
 }

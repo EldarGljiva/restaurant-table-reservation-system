@@ -1,5 +1,7 @@
 <?php
 
+use \Firebase\JWT\JWT;
+
 // Route used to get all customers from db
 Flight::route("GET /customers", function () {
     Flight::json(Flight::customerService()->getAll());
@@ -34,7 +36,28 @@ Flight::route("POST /customers/login", function () {
 
         // Verify the password   && password_verify($data['password'], $customer['password'])
         if ($customer && password_verify($data['password'], $customer['password'])) {
-            Flight::json(["message" => "Customer Logged In Successfully"]);
+            // JWT secret key
+            $secretKey = 'your_secret_key';
+
+            // JWT payload data
+            $payload = [
+                'iss' => 'http://localhost',
+                'aud' => 'http://localhost',
+                'iat' => time(),             // Issued at
+                'exp' => time() + 3600,      // Expiration time (1 hour)
+                'data' => [                  // Custom data
+                    'id' => $customer['id'],
+                    'email' => $customer['email']
+                ]
+            ];
+            // Generate JWT
+            $jwt = JWT::encode($payload, $secretKey, 'HS256');
+
+            // Send the JWT to the client
+            Flight::json([
+                "message" => "Customer Logged In Successfully",
+                "token" => $jwt
+            ]);
         } else {
             Flight::json(["message" => "Invalid email or password"], 401);
         }

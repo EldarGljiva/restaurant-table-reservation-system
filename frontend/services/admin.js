@@ -59,12 +59,32 @@ var adminService = {
       },
     });
   },
+  deleteReservation: function () {
+    let itemId = $("#delete_reservation_id").val();
+    console.log("Deleting item with ID:", itemId);
+
+    $.ajax({
+      url: "../rest/reservations/" + itemId,
+      type: "DELETE",
+      success: function () {
+        toastr.success("Reservation Deleted Successfully");
+        console.log("Reservation Deleted Successfully");
+        $("#deleteReservationModal").modal("hide");
+        adminService.getReservationsAdmin();
+      },
+      error: function () {
+        toastr.error("Error deleting reservation");
+        console.log("Error deleting reservation");
+      },
+    });
+  },
   editMenuItem: function () {
     var id = $("#edit_menuItem_id").val();
     var foodName = $("#edit_foodName").val();
     var foodPrice = $("#edit_foodPrice").val();
     var foodType = $("#edit_foodType").val();
     var description = $("#edit_description").val();
+    var image_url = $("#edit_image_url").val();
 
     var updatedMenuItem = {
       id: id,
@@ -89,6 +109,73 @@ var adminService = {
         toastr.error("Error updating menu item");
         console.log("Error updating menu item");
       },
+    });
+  },
+  editReservation: function () {
+    var id = $("#edit_reservation_id").val();
+    var reservationDate = $("#edit_reservationDate").val();
+
+    var updatedReservation = {
+      id: id,
+      reservationDate: reservationDate,
+    };
+
+    $.ajax({
+      url: "../rest/reservations/" + id,
+      type: "PUT",
+      contentType: "application/json",
+      data: JSON.stringify(updatedReservation),
+      success: function () {
+        toastr.success("Reservation Updated Successfully");
+        console.log("Reservation Updated Successfully");
+        $("#editReservationModal").modal("hide");
+        adminService.getReservationsAdmin();
+      },
+      error: function () {
+        toastr.error("Error updating reservation");
+        console.log("Error updating reservation");
+      },
+    });
+  },
+  // Display existing reservations
+  getReservationsAdmin: function () {
+    $.get("../rest/reservations", (data) => {
+      let html = "";
+      if (data) {
+        for (let i = 0; i < data.length; i++) {
+          let item = data[i];
+          html +=
+            '<div class="booking-box col-lg-3 col-md-4 col-sm-6 col-xs-6 mb-2">' +
+            '<div class="card">' +
+            '<div class="card-body">' +
+            '<h5 class="card-title"> Customer ID: ' +
+            item.customerId +
+            "</h5>" +
+            '<p class="card-text"> Table ID: ' +
+            item.tableId +
+            "</p>" +
+            '<p class="card-text"> <span style="color: green; font-weight: bold; display:block">Reservation Date</span> ' +
+            item.reservationDate +
+            "</p>" +
+            '<button type="button" class="btn btn-primary btn-sm edit-btn" data-bs-toggle="modal" data-bs-target="#editReservationModal" style = "margin-right:5px"" onclick="populateEditReservationForm(' +
+            item.id +
+            ')" data-id="' +
+            item.id +
+            '">Edit</button>' +
+            '<button type="button" class="btn btn-danger btn-sm delete-btn" data-bs-toggle="modal" data-bs-target="#deleteReservationModal" onclick="openConfirmationReservationDialog(' +
+            item.id +
+            ')" data-id="' +
+            item.id +
+            '">Delete</button>' +
+            "</div>" +
+            "</div>" +
+            "</div>";
+        }
+      } else {
+        html = "No reservations found.";
+      }
+      console.log("data: ", data);
+      $("#reservationsContentAdmin").html(html);
     });
   },
   init: function () {
@@ -193,7 +280,16 @@ function populateEditForm(itemId) {
   });
 }
 
+function populateEditReservationForm(reservationId) {
+  console.log("Editing reservation with ID:", reservationId);
+  $("#edit_reservation_id").val(reservationId);
+}
+
 function openConfirmationDialog(itemId) {
   $("#deleteMenuItemModal").modal("show");
   $("#delete_menuItem_id").val(itemId);
+}
+function openConfirmationReservationDialog(itemId) {
+  $("#deleteReservationModal").modal("show");
+  $("#delete_reservation_id").val(itemId);
 }

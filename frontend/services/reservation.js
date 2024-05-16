@@ -32,9 +32,6 @@ var reservationService = {
   // Initialize form validation and handle form submission for making reservations
   initFormValidation: function () {
     $("#reservationForm").validate({
-      errorPlacement: function (error, element) {
-        error.insertAfter(element); // Place error message after the input element
-      },
       rules: {
         email: {
           required: true,
@@ -79,13 +76,16 @@ var reservationService = {
             // Clear form
             $("#reservationForm")[0].reset();
 
-            // Update the displayed bookings after successful reservation
-            reservationService.getBookings();
+            // Update the displayed reservations after successful reservation
+            reservationService.getReservations();
             $("body").unblock();
           },
           error: function (xhr, status, error) {
             $("body").unblock();
-            toastr.error("Error in reservation: " + xhr.responseText);
+            toastr.error(
+              "Error occured during reservation. Please verify reservation details"
+            );
+            console.log("Error in reservation: " + xhr.responseText);
           },
         });
       },
@@ -104,7 +104,6 @@ var reservationService = {
   // Display existing reservations
   getReservations: function () {
     $.get("../rest/reservations", (data) => {
-      console.log("pocinjemo");
       let html = "";
       if (data) {
         for (let i = 0; i < data.length; i++) {
@@ -134,6 +133,3 @@ var reservationService = {
     });
   },
 };
-reservationService.setMinDate();
-reservationService.initFormValidation();
-reservationService.getReservations();
