@@ -35,12 +35,13 @@ var loginService = {
           },
         });
         let data = loginService.serializeForm(form);
-        // JSON.stringify is used to convert the object to a string
-        console.log(JSON.stringify(data));
         $.ajax({
           type: "POST",
           url: "../rest/customers/login",
           data: data,
+          headers: {
+            Authentication: localStorage.getItem("token"),
+          },
           success: function (response) {
             $("body").unblock();
             if (response.token) {
@@ -48,13 +49,23 @@ var loginService = {
               toastr.success("Logged in successfully");
               // Clear form
               $("#loginForm")[0].reset();
+              window.location.href = "#home";
+              location.reload();
             } else {
               toastr.error("Token not received");
             }
           },
           error: function (xhr, status, error) {
             $("body").unblock();
-            toastr.error("Error occurred");
+            var errorMessage;
+            if (xhr.status === 401) {
+              errorMessage = "Invalid email or password";
+            } else if (xhr.status === 400) {
+              errorMessage = "Email and password are required";
+            } else {
+              errorMessage = "An error occurred";
+            }
+            toastr.error(errorMessage);
             console.log(xhr.responseText);
           },
         });

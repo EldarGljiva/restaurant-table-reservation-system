@@ -24,16 +24,4 @@ class CustomersDao extends BaseDao
     // Call the parent add method
     return parent::add($customer);
   }
-
-
-
-
-
-
-  // Function to get Customer by email
-  // SHOULD USE THIS BUT DOESN'T WOKR YET
-  /*public function getByEmail($email)
-{
-    return $this->query("SELECT * FROM customer WHERE email = :email", ["email" => $email]);
-  }*/
 }

@@ -1,36 +1,46 @@
 var MenuItemsService = {
   // General function to get menu items based on food type
   getMenuItems: function (foodType) {
-    $.get("../rest/menuitems", (menuitems) => {
-      let output = "";
-      if (menuitems) {
-        for (let i = 0; i < menuitems.length; i++) {
-          let item = menuitems[i];
-          if (item.foodType === foodType) {
-            output +=
-              '<div class="col-lg-4 col-md-4 mb-2">' +
-              '<div class="card">' +
-              '<img src="' +
-              item.image_url +
-              '" class="card-img-top img-fluid" alt="food"/>' +
-              '<div class="card-body">' +
-              '<h5 class="card-title">' +
-              item.foodName +
-              "</h5>" +
-              '<p class="card-text">' +
-              item.description +
-              "</p>" +
-              "</div>" +
-              "</div>" +
-              "</div>";
+    $.ajax({
+      url: "../rest/menuitems",
+      type: "GET",
+      headers: {
+        Authentication: localStorage.getItem("token"),
+      },
+      success: function (menuitems) {
+        let output = "";
+        if (menuitems) {
+          for (let i = 0; i < menuitems.length; i++) {
+            let item = menuitems[i];
+            if (item.foodType === foodType) {
+              output +=
+                '<div class="col-lg-4 col-md-4 mb-2">' +
+                '<div class="card">' +
+                '<img src="' +
+                item.image_url +
+                '" class="card-img-top img-fluid" alt="food"/>' +
+                '<div class="card-body">' +
+                '<h5 class="card-title">' +
+                item.foodName +
+                "</h5>" +
+                '<p class="card-text">' +
+                item.description +
+                "</p>" +
+                "</div>" +
+                "</div>" +
+                "</div>";
+            }
           }
+        } else {
+          output = "No menu items found.";
         }
-      } else {
-        output = "No menu items found.";
-      }
-      // Log menuitems array to console
-      console.log("data: ", menuitems);
-      $("#menuItemsPage").html(output);
+        // Log menuitems array to console
+        console.log("data: ", menuitems);
+        $("#menuItemsPage").html(output);
+      },
+      error: function (xhr, status, error) {
+        // handle error
+      },
     });
   },
 

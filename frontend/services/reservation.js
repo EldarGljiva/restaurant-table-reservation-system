@@ -12,20 +12,30 @@ var reservationService = {
 
   // Get all tables and populate the select dropdown
   getAllTables: function () {
-    $.get("../rest/restauranttables", (data) => {
-      let html = "";
-      for (let i = 0; i < data.length; i++) {
-        let item = data[i];
-        if (item.reserved !== 1) {
-          html +=
-            '<option value="' +
-            item.tableNumber +
-            '">' +
-            item.tableNumber +
-            "</option>";
+    $.ajax({
+      url: "../rest/restauranttables",
+      type: "GET",
+      headers: {
+        Authentication: localStorage.getItem("token"),
+      },
+      success: function (data) {
+        let html = "";
+        for (let i = 0; i < data.length; i++) {
+          let item = data[i];
+          if (item.reserved !== 1) {
+            html +=
+              '<option value="' +
+              item.tableNumber +
+              '">' +
+              item.tableNumber +
+              "</option>";
+          }
         }
-      }
-      $("#table").html(html);
+        $("#table").html(html);
+      },
+      error: function (xhr, status, error) {
+        // handle error
+      },
     });
   },
 
@@ -71,6 +81,14 @@ var reservationService = {
           type: "POST",
           url: "../rest/reservations",
           data: data,
+          beforeSend: function (xhr) {
+            if (localStorage.getItem("token")) {
+              xhr.setRequestHeader(
+                "Authentication",
+                localStorage.getItem("token")
+              );
+            }
+          },
           success: function (response) {
             toastr.success("Reserved Successfully");
             // Clear form
