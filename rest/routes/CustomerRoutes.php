@@ -194,7 +194,7 @@ Flight::route("POST /customers/login", function () {
             if ($customer['email'] == $data['email']) {
 
                 // JWT secret key
-                $secretKey = JWT_SECRET;
+                $secretKey = Config::JWT_SECRET();
 
                 // JWT payload data
                 $payload = [
