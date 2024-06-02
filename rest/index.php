@@ -3,6 +3,9 @@
 // Include flightPHP
 require "../vendor/autoload.php";
 
+use \Firebase\JWT\JWT;
+use \Firebase\JWT\Key;
+
 // Require all service files
 require "services/CustomerService.php";
 require "services/MenuItemsService.php";
@@ -18,8 +21,6 @@ Flight::register("reservationService", "ReservationService");
 Flight::register("paymentService", "PaymentService");
 
 // Middleware for JWT authentication
-use \Firebase\JWT\JWT;
-use \Firebase\JWT\Key;
 
 Flight::route('/*', function () {
     $url = Flight::request()->url;
@@ -37,7 +38,7 @@ Flight::route('/*', function () {
         } else if (isset($headers['Authentication'])) {
             return true;
         } else {
-            $decoded_token = JWT::decode($token, new Key(JWT_SECRET, 'HS256'));
+            $decoded_token = JWT::decode($token, new Key(Flight::JWT_SECRET(), 'HS256'));
             Flight::set('user', $decoded_token->data);
             Flight::set('token', $token);
             return true;
