@@ -1,15 +1,6 @@
 <?php
 
-// Check if we are in a local environment
-if (getenv('ENVIRONMENT') === 'local') {
-    // Check if the config file exists before requiring it
-    if (file_exists(__DIR__ . '/../../config.php')) {
-        require_once(__DIR__ . '/../../config.php');
-    } else {
-        // Handle the case where config.php is missing in local environment
-        die('config.php is missing in the local environment.');
-    }
-}
+require __DIR__ . "/../../config.php";
 
 class BaseDao
 {
