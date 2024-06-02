@@ -53,21 +53,27 @@ var registerService = {
 
         // Serialize form data using registerService.serializeForm(form)
         let data = registerService.serializeForm(form);
-        console.log(JSON.stringify(data));
 
         $.ajax({
           type: "POST",
           url: "../rest/customers/register",
           data: data,
-          success: function (response) {
+          success: function () {
             $("body").unblock();
             toastr.success("Registered Successfully");
             // Clear form
             $("#registerForm")[0].reset();
+            window.location.href = "#login";
           },
           error: function (xhr, status, error) {
             $("body").unblock();
-            toastr.error("Error in registration");
+            var errorMessage;
+            if (xhr.status === 400) {
+              errorMessage = "Email is taken";
+            } else {
+              errorMessage = "An error occurred";
+            }
+            toastr.error(errorMessage);
             console.log(xhr.responseText);
           },
         });

@@ -47,6 +47,11 @@ var adminService = {
     $.ajax({
       url: "../rest/menuitems/" + itemId,
       type: "DELETE",
+      beforeSend: function (xhr) {
+        if (localStorage.getItem("token")) {
+          xhr.setRequestHeader("Authorization", localStorage.getItem("token"));
+        }
+      },
       success: function () {
         toastr.success("Menu Item Deleted Successfully");
         console.log("Menu Item Deleted Successfully");
@@ -66,6 +71,15 @@ var adminService = {
     $.ajax({
       url: "../rest/reservations/" + itemId,
       type: "DELETE",
+      beforeSend: function (xhr) {
+        const token = localStorage.getItem("token");
+        if (token) {
+          xhr.setRequestHeader("Authorization", token);
+          console.log("Authentication Header Set: " + token); // Log the header
+        } else {
+          console.log("Token is not available in localStorage.");
+        }
+      },
       success: function () {
         toastr.success("Reservation Deleted Successfully");
         console.log("Reservation Deleted Successfully");
@@ -99,6 +113,11 @@ var adminService = {
       type: "PUT",
       contentType: "application/json",
       data: JSON.stringify(updatedMenuItem),
+      beforeSend: function (xhr) {
+        if (localStorage.getItem("token")) {
+          xhr.setRequestHeader("Authorization", localStorage.getItem("token"));
+        }
+      },
       success: function () {
         toastr.success("Menu Item Updated Successfully");
         console.log("Menu Item Updated Successfully");
@@ -125,6 +144,11 @@ var adminService = {
       type: "PUT",
       contentType: "application/json",
       data: JSON.stringify(updatedReservation),
+      beforeSend: function (xhr) {
+        if (localStorage.getItem("token")) {
+          xhr.setRequestHeader("Authorization", localStorage.getItem("token"));
+        }
+      },
       success: function () {
         toastr.success("Reservation Updated Successfully");
         console.log("Reservation Updated Successfully");
@@ -239,6 +263,14 @@ var adminService = {
           type: "POST",
           url: "../rest/menuitems",
           data: data,
+          beforeSend: function (xhr) {
+            if (localStorage.getItem("token")) {
+              xhr.setRequestHeader(
+                "Authorization",
+                localStorage.getItem("token")
+              );
+            }
+          },
           success: function (response) {
             console.log("ajax response: " + response);
             $("body").unblock();
