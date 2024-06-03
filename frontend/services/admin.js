@@ -16,7 +16,7 @@ var adminService = {
               '<div class="card">' +
               '<img src="' +
               item.image_url +
-              '" class="card-img-top img-fluid" alt="food"/>' +
+              '" class="card-img-top img-fluid custom-img" alt="food"/>' +
               '<div class="card-body">' +
               '<h5 class="card-title">' +
               item.foodName +
