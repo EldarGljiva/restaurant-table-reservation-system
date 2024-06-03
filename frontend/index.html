@@ -223,7 +223,9 @@
       if (token) {
         const decodedToken = jwt_decode(token);
         const role = decodedToken.customer.role;
-        console.log("role is: " + role);
+        const id = decodedToken.customer.id;
+        const email = decodedToken.customer.email;
+        console.log("role is: " + role + " with email " + email);
         $("#loginBtn").hide();
         $("#logoutBtn").show();
         if (role == "admin") {

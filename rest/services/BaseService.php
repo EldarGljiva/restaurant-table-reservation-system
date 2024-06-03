@@ -37,8 +37,8 @@ class BaseService
     {
         return $this->dao->getByEmail($email);
     }
-    public function getAllReservationsById($email)
+    public function getAllReservationsByEmail($email)
     {
-        return $this->dao->getAllReservationsById($email);
+        return $this->dao->getAllReservationsByEmail($email);
     }
 }

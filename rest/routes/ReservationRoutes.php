@@ -35,8 +35,8 @@ Flight::route("GET /reservations", function () {
  *   @OA\Parameter(@OA\Schema(type="number"), in="path", name="id", example="1", description="Reservation ID"),
  * )
  */
-Flight::route("GET /reservations/@id", function ($id) {
-    Flight::json(Flight::reservationService()->getById($id));
+Flight::route("GET /reservations/@email", function ($email) {
+    Flight::json(Flight::reservationService()->getAllReservationsByEmail($email));
 });
 
 // Route used to get reservation by customer id from db

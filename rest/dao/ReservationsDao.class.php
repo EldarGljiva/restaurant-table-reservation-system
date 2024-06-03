@@ -12,7 +12,7 @@ class ReservationsDao extends BaseDao
 
 
     // Override getById method to display all bookings with customer id 
-    public function getAllReservationsById($email)
+    public function getAllReservationsByEmail($email)
     {
         $id = $this->getCustomerIdByEmail($email);
         $conn = $this->getConnection();

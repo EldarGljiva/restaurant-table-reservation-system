@@ -46,36 +46,43 @@ var MenuItemsService = {
 
   // Function to get only 3 menu items
   getLimitedMenuItems: function () {
-    $.get("../rest/menuitems", (menuitems) => {
-      let output = "";
-      if (menuitems) {
-        for (let i = 0; i <= 2 && i < menuitems.length; i++) {
-          let item = menuitems[i];
-          output +=
-            '<div class="col-lg-4 col-md-4 mb-2">' +
-            '<div class="card">' +
-            '<img src="' +
-            item.image_url +
-            '" class="card-img-top img-fluid" alt="food"/>' +
-            '<div class="card-body">' +
-            '<h5 class="card-title">' +
-            item.foodName +
-            "</h5>" +
-            '<p class="card-text">' +
-            item.description +
-            "</p>" +
-            "</div>" +
-            "</div>" +
-            "</div>";
+    $.ajax({
+      url: "../rest/menuitems",
+      type: "GET",
+      headers: {
+        Authentication: localStorage.getItem("token"),
+      },
+      success: function (menuitems) {
+        let output = "";
+        if (menuitems && menuitems.length > 0) {
+          for (let i = 0; i <= 2 && i < menuitems.length; i++) {
+            let item = menuitems[i];
+            output +=
+              '<div class="col-lg-4 col-md-4 mb-2">' +
+              '<div class="card">' +
+              '<img src="' +
+              item.image_url +
+              '" class="card-img-top img-fluid" alt="food"/>' +
+              '<div class="card-body">' +
+              '<h5 class="card-title">' +
+              item.foodName +
+              "</h5>" +
+              '<p class="card-text">' +
+              item.description +
+              "</p>" +
+              "</div>" +
+              "</div>" +
+              "</div>";
+          }
+        } else {
+          output = "No menu items found."; // Handle empty response
         }
-      } else {
-        output = "No menu items found."; // Handle empty response
-      }
-      // Log menuitems array to console
-      console.log("data: ", menuitems);
-
-      // Update the HTML content of the element with ID 'menuItems'
-      $("#menuItems").html(output);
+        console.log("data: ", menuitems);
+        $("#menuItems").html(output);
+      },
+      error: function (xhr, status, error) {
+        // handle error
+      },
     });
   },
 };

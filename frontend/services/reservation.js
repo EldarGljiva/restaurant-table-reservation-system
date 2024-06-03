@@ -81,13 +81,8 @@ var reservationService = {
           type: "POST",
           url: "../rest/reservations",
           data: data,
-          beforeSend: function (xhr) {
-            if (localStorage.getItem("token")) {
-              xhr.setRequestHeader(
-                "Authentication",
-                localStorage.getItem("token")
-              );
-            }
+          headers: {
+            Authentication: localStorage.getItem("token"),
           },
           success: function (response) {
             toastr.success("Reserved Successfully");
@@ -121,33 +116,46 @@ var reservationService = {
 
   // Display existing reservations
   getReservations: function () {
-    $.get("../rest/reservations", (data) => {
-      let html = "";
-      if (data) {
-        for (let i = 0; i < data.length; i++) {
-          let item = data[i];
-          html +=
-            '<div class="booking-box col-lg-3 col-md-4 col-sm-6 col-xs-6 mb-2">' +
-            '<div class="card">' +
-            '<div class="card-body">' +
-            '<h5 class="card-title"> Customer ID: ' +
-            item.customerId +
-            "</h5>" +
-            '<p class="card-text"> Table ID: ' +
-            item.tableId +
-            "</p>" +
-            '<p class="card-text"> <span style="color: green; font-weight: bold; display:block">Reservation Date</span> ' +
-            item.reservationDate +
-            "</p>" +
-            "</div>" +
-            "</div>" +
-            "</div>";
+    const token = localStorage.getItem("token");
+
+    const decodedToken = jwt_decode(token);
+    const email = decodedToken.customer.email;
+    $.ajax({
+      url: "../rest/reservations/" + email,
+      type: "GET",
+      headers: {
+        Authentication: localStorage.getItem("token"),
+      },
+      success: function (data) {
+        let html = "";
+        if (data && data.length > 0) {
+          for (let i = 0; i < data.length; i++) {
+            let item = data[i];
+            html +=
+              '<div class="booking-box col-lg-3 col-md-4 col-sm-6 col-xs-6 mb-2">' +
+              '<div class="card">' +
+              '<div class="card-body">' +
+              '<h5 class="card-title"> Customer ID: ' +
+              item.customerId +
+              "</h5>" +
+              '<p class="card-text"> Table ID: ' +
+              item.tableId +
+              "</p>" +
+              '<p class="card-text"> <span style="color: green; font-weight: bold; display:block">Reservation Date</span> ' +
+              item.reservationDate +
+              "</p>" +
+              "</div>" +
+              "</div>" +
+              "</div>";
+          }
+        } else {
+          html = "No reservations found.";
         }
-      } else {
-        html = "No reservations found.";
-      }
-      console.log("data: ", data);
-      $("#reservationsContent").html(html);
+        $("#reservationsContent").html(html);
+      },
+      error: function (xhr, status, error) {
+        // handle error
+      },
     });
   },
 };
