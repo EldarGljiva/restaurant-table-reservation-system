@@ -85,13 +85,13 @@ var reservationService = {
             Authentication: localStorage.getItem("token"),
           },
           success: function (response) {
+            $("body").unblock();
             toastr.success("Reserved Successfully");
             // Clear form
             $("#reservationForm")[0].reset();
-
             // Update the displayed reservations after successful reservation
             reservationService.getReservations();
-            $("body").unblock();
+            location.reload();
           },
           error: function (xhr, status, error) {
             $("body").unblock();
