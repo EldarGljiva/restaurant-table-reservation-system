@@ -13,9 +13,9 @@ class BaseDao
         $this->table_name = $table_name;
         try {
             $this->conn = new PDO(
-                "mysql:host=" . 'db-mysql-fra1-30198-do-user-14096443-0.c.db.ondigitalocean.com' . ";port=" . '25060' . ";dbname=" . 'restaurant',
-                'doadmin',
-                'AVNS_cQUG0xVG4EiSeZVUfxG',
+                "mysql:host=" . Config::DB_HOST() . ";port=" . Config::DB_PORT() . ";dbname=" . Config::DB_NAME(),
+                Config::DB_USERNAME(),
+                Config::DB_PASSWORD(),
                 [
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
