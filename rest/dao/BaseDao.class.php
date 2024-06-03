@@ -27,7 +27,6 @@ class BaseDao
     }
 
 
-    // Method to get database connection
     protected function getConnection()
     {
         return $this->conn;
