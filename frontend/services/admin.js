@@ -22,6 +22,11 @@ var adminService = {
               item.foodName +
               "</h5>" +
               '<p class="card-text">' +
+              '<span style="color: green;">$' +
+              item.foodPrice +
+              "</span>" +
+              "</p>" +
+              '<p class="card-text">' +
               item.description +
               "</p>" +
               '<button type="button" class="btn btn-primary btn-sm edit-btn" data-bs-toggle="modal" data-bs-target="#editMenuItemModal" style="margin-right:5px" onclick="populateEditForm(' +

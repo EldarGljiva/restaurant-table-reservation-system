@@ -24,6 +24,11 @@ var MenuItemsService = {
                 item.foodName +
                 "</h5>" +
                 '<p class="card-text">' +
+                '<span style="color: green;">$' +
+                item.foodPrice +
+                "</span>" +
+                "</p>" +
+                '<p class="card-text">' +
                 item.description +
                 "</p>" +
                 "</div>" +
@@ -67,6 +72,11 @@ var MenuItemsService = {
               '<h5 class="card-title">' +
               item.foodName +
               "</h5>" +
+              '<p class="card-text">' +
+              '<span style="color: green;">$' +
+              item.foodPrice +
+              "</span>" +
+              "</p>" +
               '<p class="card-text">' +
               item.description +
               "</p>" +
