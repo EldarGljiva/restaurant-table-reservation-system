@@ -8,29 +8,23 @@ class BaseDao
     private $table_name;
 
     // Class constructor used to establish connection to db
-    public function __construct($table_name)
+   public function __construct($table_name)
     {
+        $this->table_name = $table_name;
         try {
-            $this->table_name = $table_name;
-            $servername = Config::DB_HOST();
-            $username = Config::DB_USERNAME();
-            $password = Config::DB_PASSWORD();
-            $schema = Config::DB_NAME();
-            $port = Config::DB_PORT();
-
-            $this->conn = new PDO("mysql:host=$servername;port=$port;dbname=$schema", $username, $password);
-            // set the PDO error mode to exception
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            $stmt = $this->conn->prepare("SELECT * FROM " . $this->table_name);
-            $stmt->execute();
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            //print_r($result);
+            $this->conn = new PDO(
+                "mysql:host=" . 'db-mysql-fra1-30198-do-user-14096443-0.c.db.ondigitalocean.com' . ";port=" . '25060' . ";dbname=" . 'restaurant',
+                'doadmin',
+                'AVNS_cQUG0xVG4EiSeZVUfxG',
+                [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+                ]
+            );
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
     }
-
     // Method to get database connection
     protected function getConnection()
     {
